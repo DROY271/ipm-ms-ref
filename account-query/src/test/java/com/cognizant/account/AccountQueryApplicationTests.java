@@ -1,4 +1,4 @@
-package com.cognizant.accountquery;
+package com.cognizant.account;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,5 +12,6 @@ public class AccountQueryApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
+	
 
 }

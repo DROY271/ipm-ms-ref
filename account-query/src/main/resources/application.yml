@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: account
+  data:
+    rest:
+      base-path: /data
+
+logging.level:
+  org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+  
