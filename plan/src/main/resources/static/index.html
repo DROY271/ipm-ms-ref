@@ -1,0 +1,26 @@
+<html>
+<body>
+	<form action="/addPlan" method="post">
+		
+		<fieldset><legend>Plan</legend> <label for="planId">Plan Id</label> <input
+			name="id" id=planId /> <label for="planName"></label> <input
+			name="name" id=planName /> <label for="publish">Publish</label>
+		<input id="publish" type="radio" name="mode" value="publish" /> <label
+			for="change">Change</label>
+		<input id="change" type="radio" name="mode" value="change" /> <input
+			type="submit" value="Submit"></input> </fieldset>
+	</form>
+
+	<form action="/addAccount" method="post">
+		<fieldset>
+		<legend>Account</legend>
+		<label for="accountId">Account Id</label> <input name="id" id="accountId" />
+		<label for="planId">Plan Id</label> <input name="planId" id="planId"/> 
+		<label for="participantId">Participant Id</label><input name="participantId" id="participantId" />
+		<label for="sponsored">Sponsored?</label><input type="checkbox" name="sponsored" id="sponsored" />
+		 
+		<input type="submit" value="Submit"></input>
+		</fieldset>
+	</form>
+</body>
+</html>

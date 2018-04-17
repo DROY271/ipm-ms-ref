@@ -4,7 +4,28 @@ spring:
   data:
     rest:
       base-path: /data
+    
+management.endpoint.health.show-details: always
+management.endpoints.web.exposure.include: info, health, beans
+
+
 
 logging.level:
-  org.springframework.data.mongodb.core.MongoTemplate: DEBUG
-  
+  #org.springframework: DEBUG
+  com.cognizant: DEBUG
+
+sync:
+  # amqp enables RabbitMQ.
+  mode: amqp
+  amqp:
+    connect:
+      recovery-interval: 30000
+    plan:
+      exchange: plan.exchange
+      queues:
+        plan-announced: plan.announced
+        plan-changed: plan.changed
+    account:
+      exchange: account.exchange
+      queues:
+        account-opened: account.opened

@@ -1,0 +1,13 @@
+server:
+  port: 9000
+
+logging:
+  level:
+    org.springframework: info
+
+sync:
+  amqp:
+    plan:
+      exchange: plan.exchange
+    account:
+      exchange: account.exchange
