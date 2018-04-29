@@ -4,7 +4,7 @@ Maintains account level details for a participant.
 
 
 ##Commands
-1. [CreateNewAccount](#Create-New-Account)
+1. CreateNewAccount
 2. FindAccount
 
 ##Published Events
