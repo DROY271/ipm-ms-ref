@@ -41,8 +41,10 @@ class EnrollParticipantInPlanHandler extends CommandHandler<EnrollParticipantInP
 		e.setEnrollmentDate(Optional.ofNullable(command.getEnrollmentDate()).orElse(LocalDate.now()));
 		e.setPlan(new Plan());
 		e.getPlan().setId(command.getPlanId());
-		e.setSponsor(new Sponsor());
-		e.getSponsor().setId(command.getSponsorId());
+		if (command.getSponsorId() != null) {
+			e.setSponsor(new Sponsor());
+			e.getSponsor().setId(command.getSponsorId());
+		}
 		p.getEnrollments().add(e);
 		p = repo.save(p);
 		if (notifier != null) {
