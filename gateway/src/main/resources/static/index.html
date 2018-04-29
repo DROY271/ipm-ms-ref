@@ -23,8 +23,9 @@
 	<div class="content" ng-controller="MainController as pm">
 		<form class="form-inline">
 			<div class="form-group">
-				<input name="participantId" placeholder="Participant Id"
-					ng-model="pm.participantId" required="required" />
+				<input class="form-control" name="participantId"
+					placeholder="Participant Id" ng-model="pm.participantId"
+					required="required" />
 				<button class="btn btn-sm btn-primary" ng-click="pm.find()">Go</button>
 			</div>
 		</form>
@@ -34,16 +35,33 @@
 		<div class="row">
 			<span class="col-md-3">Tax Id</span> <span class="col-md-3">{{pm.participant.taxId}}</span>
 		</div>
+		<div ng-if="pm.participant">
+			<span class="col-md-3">Enroll Into</span> 
+			<span class="col-md-3">
+				<select ng-model="pm.selectedPlanId">
+					<option value="">Choose Plan</option>
+					<option ng-repeat="plan in pm.plans" value="{{plan.id}}">{{plan.name}}</option>
+				</select> 
+			</span>
+			<span class="col-md-3">
+				<button class="btn btn-sm btn-primary" ng-click="pm.enroll()">Enroll</button>
+			</span>
+		</div>
 		
 		<div ng-if="pm.participant.enrollments.length">
-			<h2>Enrollments</h2>
+			<h2>Contributions</h2>
 			<div class="row">
 				<span class="col-md-3">Plan Id - Plan Name</span> <span
-					class="col-md-3">Enrollment Date</span> <span class="col-md-3">Sponsor</span>
+					class="col-md-3">Enrollment Date</span> <span class="col-md-3">Sponsor</span><span
+					class="col-md-3">Contribution</span>
 			</div>
 			<div class="row" ng-repeat="e in pm.participant.enrollments">
 				<span class="col-md-3">{{e.plan.id}}-{{e.plan.name}}</span> <span
-					class="col-md-3">{{e.enrollmentDate}}</span> <span class="col-md-3">{{e.sponsor.name}}</span>
+					class="col-md-3">{{e.enrollmentDate |date : shortDate}}</span> <span class="col-md-3">{{e.sponsor.name}}</span>
+				<span class="col-md-3"><input class="form-control" placeholder="Contribution" ng-model="e.contribution"/></span>
+			</div>
+			<div>
+				<button class="btn btn-sm btn-warning" ng-click="pm.setContribution()">Save</button>
 			</div>
 		</div>
 
