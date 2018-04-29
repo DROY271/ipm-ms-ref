@@ -2,9 +2,7 @@ package com.cognizant.ri.spm.sponsor.onboard;
 
 import com.cognizant.ri.spm.sponsor.Sponsor;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class SponsorAddedEvent {
