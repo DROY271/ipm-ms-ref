@@ -15,6 +15,9 @@ zuul:
     pam:
       path: /pam/**
       serviceId: accounts
+    acm:
+      path: /acm/**
+      serviceId: account-contrib
 
 ribbon:
   eureka:
@@ -26,4 +29,8 @@ participant-management:
 
 accounts:
   ribbon:
-    listOfServices: localhost:9001
+    listOfServers: localhost:9001
+
+account-contrib:
+  ribbon:
+    listOfServers: localhost:9002
