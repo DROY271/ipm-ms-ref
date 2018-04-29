@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: account-contrib
+
+sub:
+  dlx: acm-dlx
+
+plan:
+  sub:
+    plan-exchange: plan-exchange
+    queues:
+      publish: acm-plan-publish
+
+participant:
+  sub:
+    participant-exchange: participant-exchange
+    queues:
+      participant-added: acm-participant-added
+      participant-enrolled: acm-participant-enrolled
+
+---
+spring.profiles: default
+eureka:
+  client:
+    enabled: false
+server:
+  port: 9002
+
+logging:
+  level:
+    com.cognizant: DEBUG
