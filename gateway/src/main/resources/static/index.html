@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-resource.min.js"></script>
+<script src="./js/arrayfrom.js"></script>
+<script src="./js/app.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" />
+</head>
+<body class="container" ng-app="participant">
+	<div class="banner col-md-12">
+		<h1>Participant View</h1>
+	</div>
+	<div class="content" ng-controller="MainController as pm">
+		<form class="form-inline">
+			<div class="form-group">
+				<input name="participantId" placeholder="Participant Id"
+					ng-model="pm.participantId" required="required" />
+				<button class="btn btn-sm btn-primary" ng-click="pm.find()">Go</button>
+			</div>
+		</form>
+		<div class="row">
+			<span class="col-md-3">Participant Name</span> <span class="col-md-3">{{pm.participant.name}}</span>
+		</div>
+		<div class="row">
+			<span class="col-md-3">Tax Id</span> <span class="col-md-3">{{pm.participant.taxId}}</span>
+		</div>
+		
+		<div ng-if="pm.participant.enrollments.length">
+			<h2>Enrollments</h2>
+			<div class="row">
+				<span class="col-md-3">Plan Id - Plan Name</span> <span
+					class="col-md-3">Enrollment Date</span> <span class="col-md-3">Sponsor</span>
+			</div>
+			<div class="row" ng-repeat="e in pm.participant.enrollments">
+				<span class="col-md-3">{{e.plan.id}}-{{e.plan.name}}</span> <span
+					class="col-md-3">{{e.enrollmentDate}}</span> <span class="col-md-3">{{e.sponsor.name}}</span>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

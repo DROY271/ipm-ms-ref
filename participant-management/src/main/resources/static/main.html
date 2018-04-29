@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+<title>Participant</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-resource.min.js"></script>
+<script src="./js/arrayfrom.js"></script>
+<script src="./js/app.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" />
+</head>
+<body ng-app="app">
+	<div class="container">
+		<h1 data-toggle="collapse" data-target="#sponsor-container">Sponsor</h1>
+	</div>
+	<div id="sponsor-container" class="sponsor-container container"
+		ng-controller="SponsorController as sc">
+		<form class="form-inline">
+			<div class="form-group">
+				<label class="sr-only" for="sponsorId">Sponsor Name</label> <input
+					class="form-control" name="name" id="sponsorId"
+					placeholder="Sponsor Name" ng-model="sc.name">
+
+			</div>
+			<div class="form-group">
+				<label class="sr-only" for="sponsoredPlan">Sponsor Name</label> <select
+					class="form-control" name="plan" id="sponsoredPlan"
+					placeholder="Plan" ng-model="sc.planId">
+					<option value="">Choose Plan</option>
+					<option ng-repeat="plan in sc.plans" value="{{plan.id}}">{{plan.name}}</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<button type="button" ng-click="sc.save()" class="btn btn-primary">Save</button>
+			</div>
+		</form>
+		<table ng-if="sc.sponsors.length" class="container  table-striped">
+			<thead>
+				<tr class="row">
+					<th class="col-md-3">Id</th>
+					<th class="col-md-3">Name</th>
+					<th class="col-md-3">Plan</th>
+					<th class="col-md-3">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="row" ng-repeat="sp in sc.sponsors"
+					ng-include="sc.getTemplate(sp)">
+				</tr>
+			</tbody>
+		</table>
+		<script type="text/ng-template" id="view-sponsor">
+		<td class="col-md-3">{{sp.id}}</td>
+		<td class="col-md-3">{{sp.name}}</td>
+		<td class="col-md-3">{{sp.plan.id}}</td>
+		<td class="col-md-3">
+			<button class='btn btn-primary btn-sm' ng-click='sc.edit(sp)'>Edit</button>
+			<button class='btn btn-danger btn-sm' >Terminate</button>
+		</td>
+		</script>
+		<script type="text/ng-template" id="edit-sponsor">
+		<td  class="col-md-3">{{sp.id}}</td>
+		<td  class="col-md-3"><input ng-model="sp.name" class="form-control"></td>
+		<td  class="col-md-3">
+			<select name="plan" class="form-control"
+				ng-model="sp.plan.id">
+				<option value="">Choose Plan</option>
+				<option ng-repeat="plan in sc.plans" value="{{plan.id}}">{{plan.name}}</option>
+			</select>
+		</td>
+		<td  class="col-md-3">
+			<button class='btn btn-primary btn-sm' ng-click='sc.update($index)'>Save</button>
+			<button class='btn btn-primary btn-sm' ng-click='sc.cancelEdit(sp)'>Cancel</button>
+		</td>
+		</script>
+	</div>
+	<div class="container">
+		<h1 data-toggle="collapse" data-target="#participant-container">Participant</h1>
+	</div>
+	<div id="participant-container" class="participant-container container"
+		ng-controller="ParticipantController as pc">
+		<form class="form-inline">
+			<div class="form-group">
+				<label class="sr-only" for="participantName">Participant
+					Name</label> <input class="form-control" name="name" id="participantName"
+					placeholder="Participant Name" ng-model="pc.name">
+			</div>
+			<div class="form-group">
+				<label class="sr-only" for="taxId">Tax Id</label> <input
+					class="form-control" name="taxId" id="taxId" placeholder="Tax Id"
+					ng-model="pc.taxId">
+			</div>
+			<div class="form-group">
+				<label class="sr-only" for="sponsorId">Sponsor Id</label> 
+				<select
+					class="form-control" name="sponsorId" id="participantSponsorId"
+					ng-model="pc.sponsorId" required="required">
+					<option value="">Choose Sponsor</option>
+					<option ng-repeat="sponsor in pc.sponsors" value="{{sponsor.id}}">{{sponsor.name}}</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<button type="button" class="btn btn-primary" ng-click="pc.add()">Save</button>
+			</div>
+		</form>
+		<table ng-if="pc.participants.length" class="container table-striped">
+			<thead>
+				<tr class="row">
+					<th class="col-md-3">Id</th>
+					<th class="col-md-3">Tax Id</th>
+					<th class="col-md-3">Name</th>
+					<th class="col-md-3">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="p in pc.participants" class="row">
+					<td class="col-md-3">{{p.id}}</td>
+					<td class="col-md-3">{{p.taxId}}</td>
+					<td class="col-md-3">{{p.name}}</td>
+					<td class="col-md-3"><button ng-click="pc.openDetails(p)" class="btn btn-sm btn-primary">Show</button></td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="plan-details container" >
+			<div class="close" ng-click="pc.closeDetails()"></div>
+			<span class="row">
+				<span class="col-md-3">Participant Id</span>
+				<span class="col-md-3">{{pc.selected.id}}</span>
+			</span>
+			<span class="row">
+				<span class="col-md-3">Tax Id</span>
+				<span class="col-md-3">{{pc.selected.taxId}}</span>
+			</span>
+			<span class="row">
+				<span class="col-md-3">Participant Name</span>
+				<span class="col-md-3">{{pc.selected.name}}</span>
+			</span>
+		</div>
+	</div>
+
+</body>
+</html>

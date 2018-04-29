@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: accounts
+
+sub:
+  dlx: pam-dlx
+
+plan:
+  sub:
+    plan-exchange: plan-exchange
+    queues:
+      publish: pam-plan-publish
+
+participant:
+  sub:
+    participant-exchange: participant-exchange
+    queues:
+      participant-added: pam-participant-added
+      participant-enrolled: pam-participant-enrolled
+
+---
+spring.profiles: default
+eureka:
+  client:
+    enabled: false
+server:
+  port: 9001
+
+logging:
+  level:
+    com.cognizant: DEBUG

@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: participant-management
+    
+exchanges:
+  sponsor: sponsor-exchange
+  participant: participant-exchange
+
+sponsor:
+  pub:
+    exchange: sponsor-exchange
+
+participant:
+  pub:
+    exchange: participant-exchange
+ 
+plan:
+  sub:
+    plan-exchange: plan-exchange
+    queues:
+      publish: spm-publish-queue
+  
+ 
+---
+spring.profiles: default
+server:
+  port: 9000
+eureka:
+  client:
+    enabled: false
+    
+    
+spring:
+  data:
+    mongodb:
+      database: pm # Separate database locally
+
+logging:
+  level:
+    com.cognizant : DEBUG
