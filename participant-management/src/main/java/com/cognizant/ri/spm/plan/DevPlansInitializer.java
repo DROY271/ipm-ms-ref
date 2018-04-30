@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile("default")
+@Profile("standalone")
 class DevPlansInitializer {
 	
 	DevPlansInitializer(PlanService service) {

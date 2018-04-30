@@ -1,4 +1,4 @@
-package com.cognizant.ipmms.ri.accounts;
+package com.cognizant.ri.acm;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
