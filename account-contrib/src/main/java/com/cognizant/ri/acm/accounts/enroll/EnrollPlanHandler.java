@@ -28,11 +28,11 @@ public class EnrollPlanHandler extends CommandHandler<EnrollPlanCommand, Account
 	@Override
 	public Account handle(EnrollPlanCommand command) {
 		Account acc = accounts.findByParticipantId(command.getParticipantId());
-		if (acc == null) {
-			throw new NoSuchElementException("account");
-		}
-		if (!plans.existsById(command.getPlanId())) {
+		if (!plans.exists(command.getPlanId())) {
 			throw new NoSuchElementException("plan");
+		}
+		if (acc == null) {
+			acc = new Account(command.getParticipantId());
 		}
 		Set<Contribution> contribs = acc.getContributions();
 		int contribAmount = contribs.isEmpty() ? 100 : 0;

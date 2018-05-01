@@ -57,7 +57,7 @@
 			</div>
 			<div class="row" ng-repeat="e in pm.participant.enrollments">
 				<span class="col-md-3">{{e.plan.id}}-{{e.plan.name}}</span> <span
-					class="col-md-3">{{e.enrollmentDate |date : shortDate}}</span> <span class="col-md-3">{{e.sponsor.name}}</span>
+					class="col-md-3">{{e.enrollmentDate | date:'longDate' | date:'longDate'}}</span> <span class="col-md-3">{{e.sponsor.name}}</span>
 				<span class="col-md-3"><input class="form-control" placeholder="Contribution" ng-model="e.contribution"/></span>
 			</div>
 			<div>

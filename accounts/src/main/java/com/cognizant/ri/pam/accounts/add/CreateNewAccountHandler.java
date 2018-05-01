@@ -23,6 +23,9 @@ public class CreateNewAccountHandler extends CommandHandler<CreateNewAccountComm
 		if (dbVal == null) {
 			Account acct = new Account(command);
 			dbVal = repo.save(acct);
+		} else if (dbVal.getParticipantName() == null) {
+			dbVal.setParticipantName(command.getParticipantName());
+			dbVal = repo.save(dbVal);
 		}
 		return dbVal;
 

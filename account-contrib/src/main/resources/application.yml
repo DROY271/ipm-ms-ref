@@ -2,6 +2,10 @@ spring:
   application:
     name: account-contrib
 
+security:
+  basic:
+    enabled: false
+
 sub:
   dlx: acm-dlx
 
@@ -18,6 +22,9 @@ participant:
       participant-added: acm-participant-added
       participant-enrolled: acm-participant-enrolled
 
+logging:
+  level:
+    com.cognizant : DEBUG
 ---
 spring.profiles: default
 eureka:
@@ -25,7 +32,3 @@ eureka:
     enabled: false
 server:
   port: 9002
-
-logging:
-  level:
-    com.cognizant: DEBUG

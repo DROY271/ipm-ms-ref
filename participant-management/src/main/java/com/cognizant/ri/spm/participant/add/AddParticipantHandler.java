@@ -26,7 +26,7 @@ class AddParticipantHandler extends CommandHandler<AddParticipantCommand, Partic
 		// Lookup by id
 		Participant p = null;
 		if (command.getId() != null) {
-			p = repo.findById(command.getId()).get();
+			p = repo.findOne(command.getId());
 		}
 		if (p == null) {
 			p = repo.findByTaxId(command.getTaxId());

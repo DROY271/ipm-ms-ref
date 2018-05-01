@@ -1,10 +1,15 @@
 server:
-  port: 9000
+  port: 8999
+
+  
+security:
+  basic:
+    enabled: false
 
 logging:
   level:
-    org.springframework: info
-
+    com.cognizant : DEBUG
+    
 sync:
   amqp:
     plan:

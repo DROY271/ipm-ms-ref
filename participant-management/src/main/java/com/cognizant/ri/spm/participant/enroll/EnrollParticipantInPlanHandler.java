@@ -33,7 +33,7 @@ class EnrollParticipantInPlanHandler extends CommandHandler<EnrollParticipantInP
 	@Override
 	public Participant handle(EnrollParticipantInPlanCommand command) {
 		log.debug("Enrolling with information : {}", command);
-		Participant p = repo.findById(command.getParticipantId()).get();
+		Participant p = repo.findOne(command.getParticipantId());
 		if (p == null) {
 			throw new IllegalArgumentException("participant.notfound");
 		}

@@ -21,7 +21,7 @@ class FindParticipantHandler extends CommandHandler<FindParticipantCommand, Part
 	public Participant handle(FindParticipantCommand command) {
 		Participant p = null;
 		if (command.getId() != null) {
-			p = repo.findById(command.getId()).get();
+			p = repo.findOne(command.getId());
 		}
 		if (p == null && command.getTaxId() != null) {
 			p = repo.findByTaxId(command.getTaxId());

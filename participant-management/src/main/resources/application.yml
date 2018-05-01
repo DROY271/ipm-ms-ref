@@ -1,7 +1,10 @@
 spring:
   application:
     name: participant-management
-    
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false 
+      
 exchanges:
   sponsor: sponsor-exchange
   participant: participant-exchange
@@ -20,7 +23,12 @@ plan:
     queues:
       publish: spm-publish-queue
   
- 
+security:
+  basic:
+    enabled: false
+logging:
+  level:
+    com.cognizant : DEBUG
 ---
 spring.profiles: default
 server:
@@ -29,12 +37,3 @@ eureka:
   client:
     enabled: false
     
-    
-spring:
-  data:
-    mongodb:
-      database: pm # Separate database locally
-
-logging:
-  level:
-    com.cognizant : DEBUG

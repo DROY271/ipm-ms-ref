@@ -17,7 +17,7 @@ public class FindSponsorHandler extends AbstractSponsorHandler<FindSponsorComman
 
 	@Override
 	public Sponsor handle(FindSponsorCommand command) {
-		return repo.findById(command.getSponsorId()).get();
+		return repo.findOne(command.getSponsorId());
 	}
 
 }

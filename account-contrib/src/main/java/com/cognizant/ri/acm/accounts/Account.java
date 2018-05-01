@@ -26,6 +26,10 @@ public class Account {
 		this.participantId = cmd.getParticipantId();
 	}
 
+	public Account(String participantId) {
+		this.participantId = participantId;
+	}
+	
 	public void setContributions(Set<Contribution> contributions) {
 		int total = contributions.stream().mapToInt(c -> c.getContribution()).sum();
 		if (total != 100) {
