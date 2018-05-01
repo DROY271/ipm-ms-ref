@@ -1,0 +1,38 @@
+---
+applications:
+- name: plan
+  path: plan/target/plan-0.0.1-SNAPSHOT.jar
+  routes: 
+  - route: plan-ipm-cts.cfapps.io
+  services:
+   - event-bus
+- name: participant-management
+  path: participant-management/target/participant-management-0.0.1-SNAPSHOT.jar
+  routes:
+  - route: spm-ipm-cts.cfapps.io
+  services:
+   - event-bus
+   - mongo
+   - eureka
+- name: accounts
+  path: accounts/target/accounts-0.0.1-SNAPSHOT.jar
+  routes:
+  - route: pam-ipm-cts.cfapps.io
+  services:
+   - event-bus
+   - mongo
+   - eureka
+- name: account-contrib
+  path: account-contrib/target/account-contrib-0.0.1-SNAPSHOT.jar
+  routes:
+  - route: acm-ipm-cts.cfapps.io
+  services:
+   - event-bus
+   - mongo
+   - eureka
+- name: gateway
+  path: gateway/target/gateway-0.0.1-SNAPSHOT.jar
+  routes:
+  - route: gateway-ipm-cts.cfapps.io
+  services:
+   - eureka
