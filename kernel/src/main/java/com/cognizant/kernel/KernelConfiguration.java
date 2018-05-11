@@ -21,4 +21,9 @@ public class KernelConfiguration {
 	public CommandHandlerRegistrar commandHandlerRegistrar() {
 		return new CommandHandlerRegistrar();
 	}
+	
+	@Bean
+	public <T> NoCacheAdvice<T> nocacheAdvice() {
+		return new NoCacheAdvice<>();
+	}
 }

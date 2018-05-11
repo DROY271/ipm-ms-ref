@@ -1,11 +1,10 @@
-package com.cognizant.ri.pam.accounts.search;
+package com.cognizant.ri.pam.accounts.handlers;
 
 import org.springframework.stereotype.Component;
 
-import com.cognizant.kernel.CommandDispatcher;
 import com.cognizant.kernel.CommandHandler;
 import com.cognizant.ri.pam.accounts.Account;
-import com.cognizant.ri.pam.accounts.AccountRepository;
+import com.cognizant.ri.pam.accounts.FindAccountByParticipantCommand;
 
 
 @Component
@@ -13,8 +12,7 @@ public class FindAccountByParticipantHandler extends CommandHandler<FindAccountB
 
 	private AccountRepository repo;
 	
-	FindAccountByParticipantHandler(CommandDispatcher dispatcher, AccountRepository repo) {
-		super(dispatcher, FindAccountByParticipantCommand.class, Account.class);
+	FindAccountByParticipantHandler(AccountRepository repo) {
 		this.repo = repo;
 	}
 	

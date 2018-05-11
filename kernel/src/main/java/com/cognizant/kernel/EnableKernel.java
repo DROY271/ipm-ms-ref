@@ -13,6 +13,6 @@ import org.springframework.context.annotation.Import;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Import(KernelConfiguration.class)
-public @interface EnableCommands {
+public @interface EnableKernel {
 
 }

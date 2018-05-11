@@ -8,7 +8,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.cognizant.ri.pam.accounts.add.CreateNewAccountCommand;
 import com.cognizant.ri.pam.plan.Plan;
 
 import lombok.Getter;

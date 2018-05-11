@@ -10,12 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.cognizant.kernel.EnableCommands;
+import com.cognizant.kernel.EnableKernel;
 
 
 @SpringBootApplication
 @EnableScheduling
-@EnableCommands
+@EnableKernel
 public class PlanApplication {
 	
 

@@ -5,10 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.cognizant.kernel.EnableCommands;
+import com.cognizant.kernel.EnableKernel;
 
 @SpringBootApplication
-@EnableCommands
+@EnableKernel
 public class ParticipantManagementApplication {
 
 	public static void main(String[] args) {

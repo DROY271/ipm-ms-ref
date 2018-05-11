@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
-import com.cognizant.kernel.EnableCommands;
+import com.cognizant.kernel.EnableKernel;
 
 @SpringBootApplication
-@EnableCommands
+@EnableKernel
 @EnableFeignClients
 public class AccountsApplication {
 

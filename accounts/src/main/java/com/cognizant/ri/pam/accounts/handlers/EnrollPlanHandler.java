@@ -1,13 +1,12 @@
-package com.cognizant.ri.pam.accounts.enroll;
+package com.cognizant.ri.pam.accounts.handlers;
 
 import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Component;
 
-import com.cognizant.kernel.CommandDispatcher;
 import com.cognizant.kernel.CommandHandler;
 import com.cognizant.ri.pam.accounts.Account;
-import com.cognizant.ri.pam.accounts.AccountRepository;
+import com.cognizant.ri.pam.accounts.EnrollPlanCommand;
 import com.cognizant.ri.pam.plan.Plan;
 import com.cognizant.ri.pam.plan.PlanRepository;
 
@@ -17,8 +16,7 @@ public class EnrollPlanHandler extends CommandHandler<EnrollPlanCommand, Account
 	private final AccountRepository accounts;
 	private final PlanRepository plans;
 
-	protected EnrollPlanHandler(CommandDispatcher dispatcher, AccountRepository accounts, PlanRepository plans) {
-		super(dispatcher, EnrollPlanCommand.class, Account.class);
+	protected EnrollPlanHandler(AccountRepository accounts, PlanRepository plans) {
 		this.accounts = accounts;
 		this.plans = plans;
 	}

@@ -1,10 +1,11 @@
-package com.cognizant.ri.pam.accounts.enroll;
+package com.cognizant.ri.pam.accounts;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 
-@AllArgsConstructor
+@AllArgsConstructor(access=AccessLevel.PACKAGE)
 @Getter
 public class EnrollPlanCommand {
 	

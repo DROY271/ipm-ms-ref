@@ -1,4 +1,4 @@
-package com.cognizant.ri.pam;
+package com.cognizant.kernel;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpHeaders;
