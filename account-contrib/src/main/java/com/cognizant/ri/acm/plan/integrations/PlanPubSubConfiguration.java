@@ -1,17 +1,14 @@
 package com.cognizant.ri.acm.plan.integrations;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import com.cognizant.kernel.DLX;
+import com.cognizant.kernel.Subscription;
 import com.cognizant.ri.acm.plan.Plan;
 import com.cognizant.ri.acm.plan.PlanService;
 
@@ -21,30 +18,44 @@ import lombok.extern.slf4j.Slf4j;
 @EnableRabbit
 public class PlanPubSubConfiguration {
 
-	@Bean("announceQueue")
-	Queue planPublishedQueue(@Value("${plan.sub.queues.publish}") String queueName) {
-		return new Queue(queueName, true);
-	}
-
-
-	@Bean("planExchange")
-	TopicExchange exchange(@Value("${plan.sub.plan-exchange}") String topicExchangeName) {
-		return new TopicExchange(topicExchangeName, true, false);
-	}
+	// @Bean("announceQueue")
+	// Queue planPublishedQueue(@Value("${plan.sub.queues.publish}") String
+	// queueName) {
+	// return new Queue(queueName, true);
+	// }
+	//
+	//
+	// @Bean("planExchange")
+	// TopicExchange exchange(@Value("${plan.sub.plan-exchange}") String
+	// topicExchangeName) {
+	// TopicExchange tx = new TopicExchange(topicExchangeName, true, false);
+	// tx.setShouldDeclare(false);
+	// return tx;
+	// }
+	//
+	// @Bean
+	// Binding bindingPublished(@Qualifier("announceQueue") Queue queue,
+	// @Qualifier("planExchange") TopicExchange exchange) {
+	// return BindingBuilder.bind(queue).to(exchange).with("plan.announced.#");
+	// }
 
 	@Bean
-	Binding bindingPublished(@Qualifier("announceQueue") Queue queue,
-			@Qualifier("planExchange") TopicExchange exchange) {
-		return BindingBuilder.bind(queue).to(exchange).with("plan.announced.#");
+	public Subscription planAnnouncedSubscription(@Value("${plan.sub.plan-exchange}") String topicExchangeName,
+			@Value("${plan.sub.queues.publish}") String queueName) {
+		return new Subscription(topicExchangeName, queueName, "plan.announced.#");
 	}
-
+	
+	@Bean
+	public DLX dlx(@Value("${sub.dlx}") String dlx) {
+		return new DLX(dlx);
+	}
 
 	@Component
 	@Slf4j
 	static class Listener {
-		
+
 		private PlanService service;
-		
+
 		public Listener(PlanService service) {
 			log.debug("Plan Subscription listener created...");
 			this.service = service;
@@ -56,5 +67,5 @@ public class PlanPubSubConfiguration {
 			service.addPlan(plan);
 		}
 	}
-	
+
 }

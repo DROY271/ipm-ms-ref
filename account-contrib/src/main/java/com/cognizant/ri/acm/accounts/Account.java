@@ -8,11 +8,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.cognizant.ri.acm.accounts.add.CreateNewAccountCommand;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "acm_accounts")
+@Builder
 public class Account {
 
 	private @Getter String participantId;
@@ -20,6 +25,7 @@ public class Account {
 	@Id
 	private @Getter String id;
 
+	@Singular
 	private @Getter Set<Contribution> contributions = new HashSet<>();
 
 	public Account(CreateNewAccountCommand cmd) {

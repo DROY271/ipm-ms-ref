@@ -16,3 +16,10 @@ sync:
       exchange: plan-exchange
     account:
       exchange: account-exchange
+      
+---
+spring.profiles: default
+debug: true
+spring:
+  jpa:
+    database: H2

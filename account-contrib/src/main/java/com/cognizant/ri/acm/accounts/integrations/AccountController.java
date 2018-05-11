@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cognizant.ri.acm.accounts.Account;
 import com.cognizant.ri.acm.accounts.AccountService;
 import com.cognizant.ri.acm.accounts.Contribution;
+import com.cognizant.ri.acm.accounts.PlanContribution;
 
 import lombok.AllArgsConstructor;
 
@@ -33,6 +34,7 @@ public class AccountController {
 
 	@GetMapping("/accounts/{participantId}/contributions")
 	public Map<String, Integer> getAccountContributions(@PathVariable("participantId") String participantId) {
+		//TODO: Change structure to match Put
 		Account acc = service.getAccountByParticipant(participantId);
 		return acc.getContributions().stream().collect(Collectors.toMap(c -> {
 			return c.getPlan().getId();
@@ -41,7 +43,7 @@ public class AccountController {
 
 	@PutMapping("/accounts/{participantId}/contributions")
 	public Account setAccountContributions(@PathVariable("participantId") String participantId,
-			@RequestBody Map<String, Integer> contributions) {
+			@RequestBody Map<String, PlanContribution> contributions) {
 		return service.setContributions(participantId, contributions);
 	}
 

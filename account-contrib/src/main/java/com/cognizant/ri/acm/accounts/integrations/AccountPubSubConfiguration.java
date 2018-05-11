@@ -39,7 +39,9 @@ public class AccountPubSubConfiguration {
 
 	@Bean("participantExchange")
 	TopicExchange exchange(@Value(PARTICIPANT_EXCHANGE_KEY) String topicExchangeName) {
-		return new TopicExchange(topicExchangeName, true, false);
+		TopicExchange tx = new TopicExchange(topicExchangeName, true, false);
+		tx.setShouldDeclare(false);
+		return tx;
 	}
 
 	@Bean("dlx")

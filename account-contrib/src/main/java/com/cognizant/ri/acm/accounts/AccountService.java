@@ -31,7 +31,7 @@ public class AccountService {
 		return dispatcher.dispatch(new FindAccountByParticipantCommand(participantId), Account.class);
 	}
 	
-	public Account setContributions(String participantId, Map<String, Integer> contributions) {
+	public Account setContributions(String participantId, Map<String, PlanContribution> contributions) {
 		SetContributionCommand command = new SetContributionCommand(participantId, contributions);
 		return dispatcher.dispatch(command, Account.class);
 	}

@@ -2,6 +2,8 @@ package com.cognizant.ri.acm.accounts.setcontrib;
 
 import java.util.Map;
 
+import com.cognizant.ri.acm.accounts.PlanContribution;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,7 +12,7 @@ import lombok.Getter;
 public class SetContributionCommand {
 
 	private String participantId;
-	
-	private Map<String, Integer> contributions;
-	
+
+	private Map<String, PlanContribution> contributions;
+
 }

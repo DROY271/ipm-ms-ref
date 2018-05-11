@@ -22,7 +22,7 @@ public class PlanService {
 	}
 	
 	public Plan addPlan(Plan plan) {
-		AddPlanCommand cmd = new AddPlanCommand(plan.getId(), plan.getName());
+		AddPlanCommand cmd = new AddPlanCommand(plan.getId(), plan.getName(), plan.getFunds());
 		return dispatcher.dispatch(cmd, Plan.class);
 	}
 }

@@ -2,7 +2,6 @@ package com.cognizant.ri.acm.accounts.setcontrib;
 
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -13,6 +12,10 @@ import com.cognizant.ri.acm.CommandHandler;
 import com.cognizant.ri.acm.accounts.Account;
 import com.cognizant.ri.acm.accounts.AccountRepository;
 import com.cognizant.ri.acm.accounts.Contribution;
+import com.cognizant.ri.acm.accounts.FundContribution;
+import com.cognizant.ri.acm.accounts.PlanContribution;
+
+import lombok.SneakyThrows;
 
 @Component
 public class SetContributionsHandler extends CommandHandler<SetContributionCommand, Account> {
@@ -30,12 +33,22 @@ public class SetContributionsHandler extends CommandHandler<SetContributionComma
 		if (acc == null) {
 			throw new NoSuchElementException("account");
 		}
-		Map<String, Integer> contributions = command.getContributions();
-		Set<Contribution> newContribs = acc.getContributions().stream().map(c -> {
-			int contrib = Optional.ofNullable(contributions.get(c.getPlan().getId())).orElse(0).intValue();
-			return new Contribution(c.getPlan(), contrib);
-		}).collect(Collectors.toSet());
-		acc.setContributions(newContribs);
+
+		Map<String, PlanContribution> planContribs = command.getContributions();
+		for (Contribution c : acc.getContributions()) {
+			String planId = c.getPlan().getId();
+			PlanContribution pc = planContribs.get(planId);
+			// Create a copy setting all fund contributions to 0
+			Set<FundContribution> copy = c.getFundComponents().stream()
+					.map(fc -> new FundContribution(fc.getFundId(), 0)).collect(Collectors.toSet());
+			// Replace the contribution value with the proposed ones.
+			copy.stream().forEach(fc -> {
+				int contribution = pc.getFundContributions().get(fc.getFundId());
+				fc.setContribution(contribution);
+			});
+			c.setFundComponents(copy);
+		}
+
 		return accounts.save(acc);
 	}
 

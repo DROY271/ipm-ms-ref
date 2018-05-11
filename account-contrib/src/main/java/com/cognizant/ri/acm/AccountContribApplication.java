@@ -5,7 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.cognizant.kernel.EnableCommands;
+
 @SpringBootApplication
+@EnableCommands
 public class AccountContribApplication {
 
 	public static void main(String[] args) {

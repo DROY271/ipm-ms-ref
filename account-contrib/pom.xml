@@ -22,9 +22,15 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Edgware.SR3</spring-cloud.version>
+		<kernel.version>0.0.1-SNAPSHOT</kernel.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.cognizant.ri</groupId>
+			<artifactId>kernel</artifactId>
+			<version>${kernel.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -41,6 +47,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -64,6 +71,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId>
+			<artifactId>de.flapdoodle.embed.mongo</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.arivera.oss/embedded-rabbitmq -->
+		<dependency>
+			<groupId>io.arivera.oss</groupId>
+			<artifactId>embedded-rabbitmq</artifactId>
+			<version>1.2.3</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -81,7 +101,7 @@
 				<version>1.6.3.RELEASE</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>			
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

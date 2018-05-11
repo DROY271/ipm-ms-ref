@@ -1,4 +1,4 @@
-package com.cognizant.plan.plan;
+package com.cognizant.plan;
 
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -8,10 +8,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+import com.cognizant.kernel.EnableCommands;
 
 
 @SpringBootApplication
+@EnableScheduling
+@EnableCommands
 public class PlanApplication {
+	
 
 	
 	public static void main(String[] args) {
@@ -23,10 +29,6 @@ public class PlanApplication {
 		return new TopicExchange(name, true, false); 
 	}
 	
-	@Bean
-	TopicExchange accountExchange(@Value("${sync.amqp.account.exchange}") String name) {
-		return new TopicExchange(name, true, false); 
-	}
 	
 	@Bean
 	RabbitTemplate rabbitTemplate(ConnectionFactory cf) {

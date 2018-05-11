@@ -2,8 +2,8 @@ package com.cognizant.ri.pam.plan.add;
 
 import org.springframework.stereotype.Component;
 
-import com.cognizant.ri.pam.CommandDispatcher;
-import com.cognizant.ri.pam.CommandHandler;
+import com.cognizant.kernel.CommandDispatcher;
+import com.cognizant.kernel.CommandHandler;
 import com.cognizant.ri.pam.plan.Plan;
 import com.cognizant.ri.pam.plan.PlanRepository;
 

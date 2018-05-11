@@ -19,6 +19,7 @@
 	</parent>
 
 	<properties>
+		<kernel.version>0.0.1-SNAPSHOT</kernel.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -26,6 +27,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.cognizant.ri</groupId>
+			<artifactId>kernel</artifactId>
+			<version>${kernel.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>

@@ -33,3 +33,15 @@ eureka:
     enabled: false
 server:
   port: 9001
+  
+ribbon:
+  eureka:
+    enabled: false
+
+account-contrib:
+  ribbon:
+    listOfServers: localhost:9002
+fund:
+  ribbon:
+    listOfServers: localhost:9010    
+
