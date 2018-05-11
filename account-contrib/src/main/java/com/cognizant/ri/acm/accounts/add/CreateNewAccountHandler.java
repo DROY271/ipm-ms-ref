@@ -2,8 +2,7 @@ package com.cognizant.ri.acm.accounts.add;
 
 import org.springframework.stereotype.Component;
 
-import com.cognizant.ri.acm.CommandDispatcher;
-import com.cognizant.ri.acm.CommandHandler;
+import com.cognizant.kernel.CommandHandler;
 import com.cognizant.ri.acm.accounts.Account;
 import com.cognizant.ri.acm.accounts.AccountRepository;
 
@@ -12,8 +11,7 @@ public class CreateNewAccountHandler extends CommandHandler<CreateNewAccountComm
 
 	private AccountRepository repo;
 	
-	protected CreateNewAccountHandler(CommandDispatcher dispatcher, AccountRepository repo) {
-		super(dispatcher, CreateNewAccountCommand.class, Account.class);
+	protected CreateNewAccountHandler(AccountRepository repo) {
 		this.repo = repo;
 	}
 

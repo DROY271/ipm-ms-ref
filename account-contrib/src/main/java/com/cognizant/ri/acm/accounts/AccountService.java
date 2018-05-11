@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.cognizant.ri.acm.CommandDispatcher;
+import com.cognizant.kernel.CommandDispatcher;
 import com.cognizant.ri.acm.accounts.add.CreateNewAccountCommand;
 import com.cognizant.ri.acm.accounts.enroll.EnrollPlanCommand;
 import com.cognizant.ri.acm.accounts.search.FindAccountByParticipantCommand;

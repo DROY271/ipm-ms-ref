@@ -6,8 +6,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
-import com.cognizant.ri.acm.CommandDispatcher;
-import com.cognizant.ri.acm.CommandHandler;
+import com.cognizant.kernel.CommandHandler;
 import com.cognizant.ri.acm.accounts.Account;
 import com.cognizant.ri.acm.accounts.AccountRepository;
 import com.cognizant.ri.acm.accounts.Contribution;
@@ -22,8 +21,7 @@ public class EnrollPlanHandler extends CommandHandler<EnrollPlanCommand, Account
 	private final AccountRepository accounts;
 	private final PlanRepository plans;
 
-	protected EnrollPlanHandler(CommandDispatcher dispatcher, AccountRepository accounts, PlanRepository plans) {
-		super(dispatcher, EnrollPlanCommand.class, Account.class);
+	protected EnrollPlanHandler(AccountRepository accounts, PlanRepository plans) {
 		this.accounts = accounts;
 		this.plans = plans;
 	}

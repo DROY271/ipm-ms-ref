@@ -1,6 +1,6 @@
 package com.cognizant.ri.acm.accounts.setcontrib;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
@@ -19,7 +19,6 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
-import com.cognizant.ri.acm.CommandDispatcher;
 import com.cognizant.ri.acm.accounts.Account;
 import com.cognizant.ri.acm.accounts.AccountRepository;
 import com.cognizant.ri.acm.accounts.Contribution;
@@ -39,7 +38,7 @@ public class SetContributionsHandlerTest {
 
 	@Before
 	public void setup() {
-		handler = new SetContributionsHandler(new CommandDispatcher(), accounts);
+		handler = new SetContributionsHandler(accounts);
 	}
 
 	@Test

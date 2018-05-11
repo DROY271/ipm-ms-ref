@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import com.cognizant.ri.acm.plan.Plan;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Singular;

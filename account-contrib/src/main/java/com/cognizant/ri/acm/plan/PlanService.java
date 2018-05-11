@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.cognizant.ri.acm.CommandDispatcher;
+import com.cognizant.kernel.CommandDispatcher;
 import com.cognizant.ri.acm.plan.add.AddPlanCommand;
 import com.cognizant.ri.acm.plan.search.FindAllPlansCommand;
 

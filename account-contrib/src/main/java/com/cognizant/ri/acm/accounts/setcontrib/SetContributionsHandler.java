@@ -7,23 +7,19 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.cognizant.ri.acm.CommandDispatcher;
-import com.cognizant.ri.acm.CommandHandler;
+import com.cognizant.kernel.CommandHandler;
 import com.cognizant.ri.acm.accounts.Account;
 import com.cognizant.ri.acm.accounts.AccountRepository;
 import com.cognizant.ri.acm.accounts.Contribution;
 import com.cognizant.ri.acm.accounts.FundContribution;
 import com.cognizant.ri.acm.accounts.PlanContribution;
 
-import lombok.SneakyThrows;
-
 @Component
 public class SetContributionsHandler extends CommandHandler<SetContributionCommand, Account> {
 
 	private final AccountRepository accounts;
 
-	protected SetContributionsHandler(CommandDispatcher dispatcher, AccountRepository accounts) {
-		super(dispatcher, SetContributionCommand.class, Account.class);
+	protected SetContributionsHandler(AccountRepository accounts) {
 		this.accounts = accounts;
 	}
 
