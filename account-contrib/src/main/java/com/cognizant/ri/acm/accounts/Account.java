@@ -13,11 +13,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "acm_accounts")
 @Builder
+@ToString
 public class Account {
 
 	private @Getter String participantId;

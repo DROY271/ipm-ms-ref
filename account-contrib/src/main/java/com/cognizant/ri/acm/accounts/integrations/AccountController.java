@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cognizant.ri.acm.accounts.Account;
 import com.cognizant.ri.acm.accounts.AccountService;
 import com.cognizant.ri.acm.accounts.Contribution;
+import com.cognizant.ri.acm.accounts.FundContribution;
 import com.cognizant.ri.acm.accounts.PlanContribution;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @AllArgsConstructor
 @RestController
+@Slf4j
 public class AccountController {
 
 	private AccountService service;
@@ -33,12 +36,19 @@ public class AccountController {
 	}
 
 	@GetMapping("/accounts/{participantId}/contributions")
-	public Map<String, Integer> getAccountContributions(@PathVariable("participantId") String participantId) {
-		//TODO: Change structure to match Put
+	public Map<String, PlanContribution> getAccountContributions(@PathVariable("participantId") String participantId) {
 		Account acc = service.getAccountByParticipant(participantId);
+		log.debug("Account details : {}", acc);
+		
 		return acc.getContributions().stream().collect(Collectors.toMap(c -> {
 			return c.getPlan().getId();
-		}, Contribution::getContribution));
+		}, this::toPlanContribution));
+	}
+
+	private PlanContribution toPlanContribution(Contribution c) {
+		Map<String, Integer> fc = c.getFundComponents().stream()
+				.collect(Collectors.toMap(FundContribution::getFundId, FundContribution::getContribution));
+		return new PlanContribution(c.getContribution(), fc);
 	}
 
 	@PutMapping("/accounts/{participantId}/contributions")
