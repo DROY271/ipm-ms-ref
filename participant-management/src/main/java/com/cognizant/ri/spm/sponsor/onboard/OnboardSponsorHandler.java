@@ -18,6 +18,7 @@ public class OnboardSponsorHandler extends AbstractSponsorHandler<OnboardSponsor
 	public Sponsor handle(OnboardSponsorCommand cmd) {
 		// Sponsor sponsor = repo.findByName(name);
 		// if (sponsor == null) {
+		// TODO: Check to see if sponsor exists. Return sponsor if equal.
 		Sponsor sponsor = new Sponsor(cmd);
 		sponsor = repo.save(sponsor);
 		if (notifier != null) {
@@ -25,7 +26,7 @@ public class OnboardSponsorHandler extends AbstractSponsorHandler<OnboardSponsor
 		}
 		return sponsor;
 		// }
-//		 throw new IllegalArgumentException("sponsor.exists");
+		// throw new IllegalArgumentException("sponsor.exists");
 
 	}
 

@@ -37,6 +37,7 @@ class EnrollParticipantInPlanHandler extends CommandHandler<EnrollParticipantInP
 		if (p == null) {
 			throw new IllegalArgumentException("participant.notfound");
 		}
+		//TODO: Handle dups in enrollment.
 		Enrollment e = new Enrollment();
 		e.setEnrollmentDate(Optional.ofNullable(command.getEnrollmentDate()).orElse(LocalDate.now()));
 		e.setPlan(new Plan());

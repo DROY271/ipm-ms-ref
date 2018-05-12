@@ -1,5 +1,6 @@
 package com.cognizant.ri.spm.participant;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,5 +31,9 @@ public class Participant {
 		this.id = command.getId();
 		this.taxId = command.getTaxId();
 		this.name = command.getName();
+	}
+	
+	public Set<Enrollment> getEnrollments(){
+		return Collections.unmodifiableSet(enrollments);
 	}
 }
