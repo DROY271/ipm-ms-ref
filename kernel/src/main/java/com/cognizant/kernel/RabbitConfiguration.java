@@ -141,7 +141,6 @@ public class RabbitConfiguration {
 
 		@Override
 		public Object postProcessBeforeInitialization(Object bean, String name) throws BeansException {
-			// TODO Auto-generated method stub
 			return bean;
 		}
 
