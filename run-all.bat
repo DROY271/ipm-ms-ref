@@ -1,3 +1,4 @@
+start "fund" java -jar fund/target/fund-0.0.1-SNAPSHOT.jar
 start "plan" java -jar plan/target/plan-0.0.1-SNAPSHOT.jar
 start "participant-management" java -jar participant-management/target/participant-management-0.0.1-SNAPSHOT.jar
 start "accounts" java -jar accounts/target/accounts-0.0.1-SNAPSHOT.jar
