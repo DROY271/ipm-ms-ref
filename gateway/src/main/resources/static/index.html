@@ -35,7 +35,7 @@
 		<div class="row">
 			<span class="col-md-3">Tax Id</span> <span class="col-md-3">{{pm.participant.taxId}}</span>
 		</div>
-		<div ng-if="pm.participant">
+		<div class="row" ng-if="pm.participant">
 			<span class="col-md-3">Enroll Into</span> 
 			<span class="col-md-3">
 				<select ng-model="pm.selectedPlanId">
@@ -48,17 +48,25 @@
 			</span>
 		</div>
 		
-		<div ng-if="pm.participant.enrollments.length">
-			<h2>Contributions</h2>
+		<div class="row" ng-if="pm.participant.enrollments.length">
+			<h2>Contribution Instructions</h2>
 			<div class="row">
 				<span class="col-md-3">Plan Id - Plan Name</span> <span
 					class="col-md-3">Enrollment Date</span> <span class="col-md-3">Sponsor</span><span
 					class="col-md-3">Contribution</span>
 			</div>
-			<div class="row" ng-repeat="e in pm.participant.enrollments">
+			<div class="header-row" ng-repeat="e in pm.participant.enrollments">
+				<div class="row">
 				<span class="col-md-3">{{e.plan.id}}-{{e.plan.name}}</span> <span
 					class="col-md-3">{{e.enrollmentDate | date:'longDate' | date:'longDate'}}</span> <span class="col-md-3">{{e.sponsor.name}}</span>
-				<span class="col-md-3"><input class="form-control" placeholder="Contribution" ng-model="e.contribution"/></span>
+				<span class="col-md-3"><input class="form-control" placeholder="Contribution" ng-model="e.contribution.contribution"/></span>
+				</div>
+				<div class="row" ng-repeat="(id, value) in e.contribution.fundContributions">
+					<span class="col-md-3">Fund {{id}}</span>
+					<span class="col-md-3"></span>
+					<span class="col-md-3"><input class="form-control" placeholder="Contribution" ng-model="e.contribution.fundContributions[id]"/></span>
+					<span class="col-md-3"></span>
+				</div>
 			</div>
 			<div>
 				<button class="btn btn-sm btn-warning" ng-click="pm.setContribution()">Save</button>

@@ -21,7 +21,7 @@ module.factory('EnrollmentService', [ '$resource', function($resource) {
 		}
 	});
 } ]);
-module.factory('ContributionService', [ '$resource', function($resource) {
+module.factory('ContributionInstructionsService', [ '$resource', function($resource) {
 	return $resource('/acm/accounts/:participantId/contributions', {
 		participantId : '@participantId'
 	}, {
@@ -37,11 +37,11 @@ module.factory('ContributionService', [ '$resource', function($resource) {
 module.controller("MainController", [
 		'ParticipantService',
 		'EnrollmentService',
-		'ContributionService',
+		'ContributionInstructionsService',
 		'PlanService',
 		'$q',
 		'$filter',
-		function(participants, enrollments, contributions, plans, $q, $filter) {
+		function(participants, enrollments, instructions, plans, $q, $filter) {
 
 			var state = {
 				participantId : '',
@@ -55,7 +55,7 @@ module.controller("MainController", [
 					participantId : participantId
 				});
 
-				this.contributions = contributions.get({
+				this.contributions = instructions.get({
 					participantId : participantId
 				});
 
@@ -63,6 +63,7 @@ module.controller("MainController", [
 					p : this.participant.$promise,
 					c : this.contributions.$promise
 				}).then(function(results) {
+					// Update the enrollments object with instructions
 					var c = results.c;
 					var e = results.p.enrollments;
 					for (var i = 0; i < e.length; i++) {
@@ -82,7 +83,7 @@ module.controller("MainController", [
 					var contribution = enrollments[i].contribution;
 					data[planId] = contribution;
 				}
-				contributions.set({
+				instructions.set({
 					participantId : this.participantId
 				}, data).$promise.then(function() {
 					that.find();
