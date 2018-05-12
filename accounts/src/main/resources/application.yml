@@ -1,7 +1,9 @@
 spring:
   application:
     name: accounts
-
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
 security:
   basic:
     enabled: false
@@ -41,6 +43,7 @@ ribbon:
 account-contrib:
   ribbon:
     listOfServers: localhost:9002
+
 fund:
   ribbon:
     listOfServers: localhost:9010    

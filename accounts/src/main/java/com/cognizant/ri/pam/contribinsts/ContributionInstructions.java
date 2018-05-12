@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface ContributionInstructions {
 
 	@RequestMapping("/accounts/{participantId}")
-	AccountContributions get(@PathVariable("participantId") String participantId);
+	AccountInstructions get(@PathVariable("participantId") String participantId);
 
 }

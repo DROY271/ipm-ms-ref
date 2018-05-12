@@ -1,5 +1,7 @@
 package com.cognizant.ri.pam.accounts.integrations;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cognizant.ri.pam.accounts.Account;
 import com.cognizant.ri.pam.accounts.AccountService;
+import com.cognizant.ri.pam.accounts.Contribution;
 
 import lombok.AllArgsConstructor;
 
@@ -28,8 +31,14 @@ public class AccountController {
 	}
 
 	@PostMapping("/accounts/{participantId}/contributions")
-	public void contribute(@PathVariable("participantId") String participantId, @RequestBody int amount) {
-		service.makeContribution(participantId, amount);
+	public Contribution contribute(@PathVariable("participantId") String participantId, @RequestBody int amount) {
+		return service.makeContribution(participantId, amount);
+	}
+	
+	
+	@GetMapping("/accounts/{participantId}/contributions")
+	public List<Contribution> contribute(@PathVariable("participantId") String participantId) {
+		return service.getContribution(participantId);
 	}
 
 }

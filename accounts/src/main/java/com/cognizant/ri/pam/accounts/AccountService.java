@@ -5,19 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.cognizant.kernel.CommandDispatcher;
-import com.cognizant.ri.pam.contribinsts.ContributionInstructions;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Service
-@Slf4j
 public class AccountService {
 
 	private final CommandDispatcher dispatcher;
-
-	private final ContributionInstructions instructions;
 
 	public Account createNewAccount(String participantId, String participantName) {
 		CreateNewAccountCommand command = new CreateNewAccountCommand(participantId, participantName);
@@ -36,7 +31,11 @@ public class AccountService {
 		return dispatcher.dispatch(new FindAccountByParticipantCommand(participantId), Account.class);
 	}
 
-	public void makeContribution(String participantId, int amount) {
-		log.debug("Received contribution instructions {}", instructions.get(participantId));
+	public Contribution makeContribution(String participantId, int amount) {
+		return dispatcher.dispatch(new MakeContributionCommand(participantId, amount), Contribution.class);
+	}
+	
+	public List<Contribution> getContribution(String participantId) {
+		return dispatcher.dispatch(new FindAllContributionsCommand(participantId), CommandDispatcher.list());
 	}
 }
