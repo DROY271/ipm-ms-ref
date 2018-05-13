@@ -6,6 +6,12 @@ applications:
   - route: plan-ipm-cts.cfapps.io
   services:
    - event-bus
+- name: fund
+  path: fund/target/fund-0.0.1-SNAPSHOT.jar
+  routes:
+  - route: fund-ipm-cts.cfapps.io
+  services:
+   - eureka
 - name: participant-management
   path: participant-management/target/participant-management-0.0.1-SNAPSHOT.jar
   routes:
