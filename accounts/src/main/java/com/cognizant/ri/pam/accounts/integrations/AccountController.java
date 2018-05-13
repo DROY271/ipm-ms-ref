@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cognizant.ri.pam.accounts.Account;
 import com.cognizant.ri.pam.accounts.AccountService;
+import com.cognizant.ri.pam.accounts.Balances;
 import com.cognizant.ri.pam.accounts.Contribution;
 
 import lombok.AllArgsConstructor;
@@ -41,4 +42,9 @@ public class AccountController {
 		return service.getContribution(participantId);
 	}
 
+	@GetMapping("/accounts/{participantId}/balances")
+	public Balances getAccountBalances(@PathVariable("participantId") String participantId) {
+		return service.getAccountBalance(participantId);
+	}
+	
 }

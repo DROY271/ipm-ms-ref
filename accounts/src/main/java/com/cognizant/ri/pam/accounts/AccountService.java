@@ -38,4 +38,8 @@ public class AccountService {
 	public List<Contribution> getContribution(String participantId) {
 		return dispatcher.dispatch(new FindAllContributionsCommand(participantId), CommandDispatcher.list());
 	}
+	
+	public Balances getAccountBalance(String participantId) {
+		return dispatcher.dispatch(new GetAccountBalanceCommand(participantId), Balances.class);
+	}
 }
