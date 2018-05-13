@@ -15,6 +15,14 @@
 	href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" />
+	
+<style type="text/css">
+.header-row {
+  border-color: blue;
+  border-bottom: 1px;
+}
+
+</style>
 </head>
 <body class="container" ng-app="participant">
 	<div class="banner col-md-12">
@@ -29,13 +37,15 @@
 				<button class="btn btn-sm btn-primary" ng-click="pm.find()">Go</button>
 			</div>
 		</form>
-		<div class="row">
-			<span class="col-md-3">Participant Name</span> <span class="col-md-3">{{pm.participant.name}}</span>
+		<div class="section row">
+			<div class="row">
+				<span class="col-md-3">Participant Name</span> <span class="col-md-3">{{pm.participant.name}}</span>
+			</div>
+			<div class="row">
+				<span class="col-md-3">Tax Id</span> <span class="col-md-3">{{pm.participant.taxId}}</span>
+			</div>
 		</div>
-		<div class="row">
-			<span class="col-md-3">Tax Id</span> <span class="col-md-3">{{pm.participant.taxId}}</span>
-		</div>
-		<div class="row" ng-if="pm.participant">
+		<div class="section row" ng-if="pm.participant">
 			<span class="col-md-3">Enroll Into</span> 
 			<span class="col-md-3">
 				<select ng-model="pm.selectedPlanId">
@@ -48,7 +58,7 @@
 			</span>
 		</div>
 		
-		<div class="row" ng-if="pm.participant.enrollments.length">
+		<div class="section row" ng-if="pm.participant.enrollments.length">
 			<h2>Contribution Instructions</h2>
 			<div class="row">
 				<span class="col-md-3">Plan Id - Plan Name</span> <span
