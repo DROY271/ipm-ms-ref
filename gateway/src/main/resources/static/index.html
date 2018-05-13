@@ -15,13 +15,12 @@
 	href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" />
-	
+
 <style type="text/css">
 .header-row {
-  border-color: blue;
-  border-bottom: 1px;
+	border-color: blue;
+	border-bottom: 1px;
 }
-
 </style>
 </head>
 <body class="container" ng-app="participant">
@@ -39,25 +38,24 @@
 		</form>
 		<div class="section row">
 			<div class="row">
-				<span class="col-md-3">Participant Name</span> <span class="col-md-3">{{pm.participant.name}}</span>
+				<span class="col-md-3">Participant Name</span> <span
+					class="col-md-3">{{pm.participant.name}}</span>
 			</div>
 			<div class="row">
 				<span class="col-md-3">Tax Id</span> <span class="col-md-3">{{pm.participant.taxId}}</span>
 			</div>
 		</div>
 		<div class="section row" ng-if="pm.participant">
-			<span class="col-md-3">Enroll Into</span> 
-			<span class="col-md-3">
+			<span class="col-md-3">Enroll Into</span> <span class="col-md-3">
 				<select ng-model="pm.selectedPlanId">
 					<option value="">Choose Plan</option>
 					<option ng-repeat="plan in pm.plans" value="{{plan.id}}">{{plan.name}}</option>
-				</select> 
-			</span>
-			<span class="col-md-3">
+			</select>
+			</span> <span class="col-md-3">
 				<button class="btn btn-sm btn-primary" ng-click="pm.enroll()">Enroll</button>
 			</span>
 		</div>
-		
+
 		<div class="section row" ng-if="pm.participant.enrollments.length">
 			<h2>Contribution Instructions</h2>
 			<div class="row">
@@ -67,22 +65,46 @@
 			</div>
 			<div class="header-row" ng-repeat="e in pm.participant.enrollments">
 				<div class="row">
-				<span class="col-md-3">{{e.plan.id}}-{{e.plan.name}}</span> <span
-					class="col-md-3">{{e.enrollmentDate | date:'longDate' | date:'longDate'}}</span> <span class="col-md-3">{{e.sponsor.name}}</span>
-				<span class="col-md-3"><input class="form-control" placeholder="Contribution" ng-model="e.contribution.contribution"/></span>
+					<span class="col-md-3">{{e.plan.id}}-{{e.plan.name}}</span> <span
+						class="col-md-3">{{e.enrollmentDate | date:'longDate' |
+						date:'longDate'}}</span> <span class="col-md-3">{{e.sponsor.name}}</span>
+					<span class="col-md-3"><input class="form-control"
+						placeholder="Contribution" ng-model="e.instructions.contribution" /></span>
 				</div>
-				<div class="row" ng-repeat="(id, value) in e.contribution.fundContributions">
-					<span class="col-md-3">Fund {{id}}</span>
-					<span class="col-md-3"></span>
-					<span class="col-md-3"><input class="form-control" placeholder="Contribution" ng-model="e.contribution.fundContributions[id]"/></span>
-					<span class="col-md-3"></span>
+				<div class="row"
+					ng-repeat="(id, value) in e.instructions.fundContributions">
+					<span class="col-md-3">Fund {{id}}</span> <span class="col-md-3"></span>
+					<span class="col-md-3"><input class="form-control"
+						placeholder="Contribution"
+						ng-model="e.instructions.fundContributions[id]" /></span> <span
+						class="col-md-3"></span>
 				</div>
 			</div>
 			<div>
-				<button class="btn btn-sm btn-warning" ng-click="pm.setContribution()">Save</button>
+				<button class="btn btn-sm btn-warning"
+					ng-click="pm.setContribution()">Set Contribution
+					Instructions</button>
 			</div>
 		</div>
-
+		<div class="section row" ng-if="pm.balances.planBalances.length">
+			<h2>Contribution Balances</h2>
+			<div class="row">
+				<span class="col-md-3">Plan Id - Plan Name</span>
+					<span class="col-md-3"> Fund Id </span>
+				<span
+					class="col-md-3">Units Owned</span> <span class="col-md-3">Value</span>
+			</div>
+			<div class="header-row" ng-repeat="pb in pm.balances.planBalances">
+				<div class="row">
+					<span class="col-md-3">{{pb.planId}}-{{pb.planName}}</span><span class="col-md-3"></span> <span
+						class="col-md-3">{{pb.quantity}}</span> <span class="col-md-3">{{pb.value}}</span>
+				</div>
+				<div class="row" ng-repeat="fb in pb.fundBalance">
+				<span class="col-md-3"></span><span class="col-md-3">{{fb.fundId}}</span> <span
+						class="col-md-3">{{fb.quantity}}</span> <span class="col-md-3">{{fb.value}}</span>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

@@ -56,7 +56,7 @@ public class GetAccountBalanceHandler extends CommandHandler<GetAccountBalanceCo
 					PlanBalance p = planBalances.get(a.getPlanId());
 					BigDecimal fundVal = BigDecimal.valueOf(Optional.fromNullable(fundValues.get(a.getFundId())).or(0));
 					BigDecimal quantity = Optional.fromNullable(a.getQuanity()).or(BigDecimal.ZERO);
-					p.add(new FundBalance(a.getFundId(), fundVal.multiply(quantity).setScale(2, RoundingMode.HALF_UP)));
+					p.add(new FundBalance(a.getFundId(), fundVal.multiply(quantity).setScale(2, RoundingMode.HALF_UP), a.getQuanity()));
 				});
 
 		Balances b = new Balances();

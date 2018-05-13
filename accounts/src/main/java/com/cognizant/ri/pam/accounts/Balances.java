@@ -14,10 +14,11 @@ import lombok.RequiredArgsConstructor;
 @Data
 public class Balances {
 
+	
 	@RequiredArgsConstructor
 	public static class PlanBalance {
 		@NonNull
-		private final String planId;
+		@Getter private final String planId;
 		@Getter private List<FundBalance> fundBalance = new ArrayList<>();
 
 		public BigDecimal getValue() {
@@ -28,7 +29,7 @@ public class Balances {
 			boolean[] result = { false };
 			fundBalance.stream().forEach(f -> result[0] |= f.addIfMatch(balance));
 			if (!result[0]) {
-				fundBalance.add(new FundBalance(balance.getFundId(), balance.getValue()));
+				fundBalance.add(new FundBalance(balance.getFundId(), balance.getValue(), balance.getQuantity()));
 			}
 		}
 	}
@@ -38,10 +39,13 @@ public class Balances {
 	public static class FundBalance {
 		String fundId;
 		BigDecimal value;
-
+		BigDecimal quantity;
+		
+		
 		boolean addIfMatch(FundBalance balance) {
 			if (fundId.equals(balance.fundId)) {
 				value = value.add(balance.getValue());
+				quantity = quantity.add(balance.getQuantity());
 				return true;
 			}
 			return false;

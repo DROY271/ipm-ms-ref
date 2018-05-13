@@ -34,6 +34,6 @@ public class Participant {
 	}
 	
 	public Set<Enrollment> getEnrollments(){
-		return Collections.unmodifiableSet(enrollments);
+		return enrollments;
 	}
 }
