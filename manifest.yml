@@ -1,44 +1,52 @@
 ---
+defaults: &defaults
+  env:
+    EUREKA_URI: http://eureka-ipm-cts.cfapps.io/eureka
+  
 applications:
-- name: plan
+- name: eureka-v1a
+  path: eureka/target/eureka-0.0.1-SNAPSHOT.jar
+  routes: 
+  - route: eureka-ipm-cts.cfapps.io
+- name: plan-v1a
+  <<: *defaults
   path: plan/target/plan-0.0.1-SNAPSHOT.jar
   routes: 
   - route: plan-ipm-cts.cfapps.io
   services:
    - event-bus
-- name: fund
+   - mongo
+- name: fund-v1a
+  <<: *defaults
   path: fund/target/fund-0.0.1-SNAPSHOT.jar
   routes:
   - route: fund-ipm-cts.cfapps.io
-  services:
-   - eureka
-- name: participant-management
+- name: participant-management-v1a
+  <<: *defaults
   path: participant-management/target/participant-management-0.0.1-SNAPSHOT.jar
   routes:
   - route: spm-ipm-cts.cfapps.io
   services:
    - event-bus
    - mongo
-   - eureka
-- name: accounts
+- name: accounts-v1a
+  <<: *defaults
   path: accounts/target/accounts-0.0.1-SNAPSHOT.jar
   routes:
   - route: pam-ipm-cts.cfapps.io
   services:
    - event-bus
    - mongo
-   - eureka
-- name: account-contrib
+- name: account-contrib-v1a
+  <<: *defaults
   path: account-contrib/target/account-contrib-0.0.1-SNAPSHOT.jar
   routes:
   - route: acm-ipm-cts.cfapps.io
   services:
    - event-bus
    - mongo
-   - eureka
-- name: gateway
+- name: gateway-v1a
+  <<: *defaults
   path: gateway/target/gateway-0.0.1-SNAPSHOT.jar
   routes:
   - route: gateway-ipm-cts.cfapps.io
-  services:
-   - eureka

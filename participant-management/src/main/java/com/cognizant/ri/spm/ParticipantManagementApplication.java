@@ -3,12 +3,14 @@ package com.cognizant.ri.spm;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 import com.cognizant.kernel.EnableKernel;
 
 @SpringBootApplication
 @EnableKernel
+@EnableEurekaClient
 public class ParticipantManagementApplication {
 
 	public static void main(String[] args) {

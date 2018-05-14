@@ -16,7 +16,7 @@ import com.cognizant.ri.pam.accounts.Contribution.Allocation;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@FeignClient("fund")
+@FeignClient("${app.name.fund}")
 public interface Funds {
 	
 	

@@ -4,8 +4,15 @@ spring:
 security:
   basic:
     enabled: false
+management:
+  security:
+    enabled: false    
 
-    
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+          
 zuul:
   ignored-headers: X-none
   ignore-security-headers: false
@@ -19,6 +26,32 @@ zuul:
     acm:
       path: /acm/**
       serviceId: account-contrib
+
+---
+spring.profiles: cloud
+eureka:
+  instance:
+    nonSecurePort: 80
+    hostname: ${vcap.application.uris[0]}
+
+---
+spring.profiles: deployed-eureka
+
+zuul:
+  ignored-headers: X-none
+  ignore-security-headers: false
+  routes:
+    spm:
+      path: /spm/**
+      serviceId: participant-management-v1a
+    pam:
+      path: /pam/**
+      serviceId: accounts-v1a
+    acm:
+      path: /acm/**
+      serviceId: account-contrib-v1a
+
+
 
 ---
 spring.profiles: default
