@@ -44,6 +44,16 @@ public class GetAccountBalanceHandler extends CommandHandler<GetAccountBalanceCo
 				.collect(Collectors.toList());
 		Set<String> uniqueFundIds = getAllocationsStream(successfulContributions)
 				.map(a -> a.getFundId()).collect(Collectors.toSet());
+		
+		if (uniqueFundIds.isEmpty()) {
+			Balances b = new Balances();
+			b.setParticipantId(participantId);
+			b.setTransactionTime(LocalDateTime.now());
+			b.setPlanBalances(Collections.emptyList());
+			return b;
+		}
+		
+		
 		Map<String, Integer> fundValues = funds.getFundValues(uniqueFundIds);
 
 		Set<String> plans = getAllocationsStream(successfulContributions)

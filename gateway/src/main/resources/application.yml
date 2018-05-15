@@ -35,25 +35,6 @@ eureka:
     hostname: ${vcap.application.uris[0]}
 
 ---
-spring.profiles: deployed-eureka
-
-zuul:
-  ignored-headers: X-none
-  ignore-security-headers: false
-  routes:
-    spm:
-      path: /spm/**
-      serviceId: participant-management-v1a
-    pam:
-      path: /pam/**
-      serviceId: accounts-v1a
-    acm:
-      path: /acm/**
-      serviceId: account-contrib-v1a
-
-
-
----
 spring.profiles: default
 eureka:
   client:

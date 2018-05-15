@@ -71,6 +71,7 @@ module
 
 							var state = {
 								participantId : '',
+								amount : 0
 
 							}
 
@@ -174,11 +175,27 @@ module
 													});
 								}
 							}
+							
+							function contribute() {
+								var that = this;
+								if (this.amount && this.amount > 0) {
+									contributions.contribute({
+										participantId : this.participantId
+									}, this.amount, function() {
+										alert('Contribution was successful.');
+										that.amount = 0;
+										that.loadBalances(that.plans);
+									}, function() {
+										alert('An error occurred when setting contribution.')
+									});
+								}
+							}
 
 							state.find = find;
 							state.setContribution = setContribution;
 							state.enroll = enroll;
 							state.loadBalances = loadBalances;
+							state.contribute = contribute;
 							return state;
 
 						} ]);

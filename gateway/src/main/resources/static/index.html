@@ -55,6 +55,14 @@
 				<button class="btn btn-sm btn-primary" ng-click="pm.enroll()">Enroll</button>
 			</span>
 		</div>
+		<div class="section row" ng-if="pm.participant">
+			<span class="col-md-3">Contribute Amount</span> <span class="col-md-3">
+				<input type="number" ng-model="pm.amount">
+			</span> <span class="col-md-3">
+				<button class="btn btn-sm btn-primary" ng-click="pm.contribute()" >Contribute</button>
+			</span>
+		</div>
+
 
 		<div class="section row" ng-if="pm.participant.enrollments.length">
 			<h2>Contribution Instructions</h2>
