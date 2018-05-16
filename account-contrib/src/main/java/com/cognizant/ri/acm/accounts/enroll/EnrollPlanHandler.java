@@ -15,7 +15,10 @@ import com.cognizant.ri.acm.plan.Fund;
 import com.cognizant.ri.acm.plan.Plan;
 import com.cognizant.ri.acm.plan.PlanRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class EnrollPlanHandler extends CommandHandler<EnrollPlanCommand, Account> {
 
 	private final AccountRepository accounts;
@@ -37,6 +40,7 @@ public class EnrollPlanHandler extends CommandHandler<EnrollPlanCommand, Account
 		}
 		if (acc == null) {
 			acc = new Account(command.getParticipantId());
+			log.debug("Existing account not found. A ParticipantAdded may not have been received.");
 		}
 		Set<Contribution> contribs = acc.getContributions();
 		int contribAmount = contribs.isEmpty() ? 100 : 0;

@@ -35,6 +35,7 @@ class EnrollParticipantInPlanHandler extends CommandHandler<EnrollParticipantInP
 		log.debug("Enrolling with information : {}", command);
 		Participant p = repo.findOne(command.getParticipantId());
 		if (p == null) {
+			log.error("Did not find participant with id:{}" , command.getParticipantId());
 			throw new IllegalArgumentException("participant.notfound");
 		}
 		//TODO: Handle dups in enrollment.
@@ -43,6 +44,7 @@ class EnrollParticipantInPlanHandler extends CommandHandler<EnrollParticipantInP
 		e.setPlan(new Plan());
 		e.getPlan().setId(command.getPlanId());
 		if (command.getSponsorId() != null) {
+			log.debug("Enrollment is for sponsor plan");
 			e.setSponsor(new Sponsor());
 			e.getSponsor().setId(command.getSponsorId());
 		}
@@ -51,6 +53,7 @@ class EnrollParticipantInPlanHandler extends CommandHandler<EnrollParticipantInP
 		if (notifier != null) {
 			notifier.participantEnrolledInPlan(new ParticipantEnrolledEvent(p, e));
 		}
+		log.debug("Returning participant : {}", p);
 		return p;
 	}
 

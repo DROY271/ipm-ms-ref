@@ -9,7 +9,10 @@ import com.cognizant.ri.spm.participant.Notifier;
 import com.cognizant.ri.spm.participant.add.ParticipantAddedEvent;
 import com.cognizant.ri.spm.participant.enroll.ParticipantEnrolledEvent;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 class RabbitParticipantNotifier implements Notifier {
 
 	private String exchange;
@@ -22,11 +25,13 @@ class RabbitParticipantNotifier implements Notifier {
 
 	@Override
 	public void participantAdded(ParticipantAddedEvent e) {
+		log.debug("Publishing PariticpantAdded event {}" , e);
 		template.convertAndSend(exchange, "participant.added." + e.getParticipantId(), e);
 	}
 
 	@Override
 	public void participantEnrolledInPlan(ParticipantEnrolledEvent e) {
+		log.debug("Publishing PariticpantEnrolled event {}" , e);
 		template.convertAndSend(exchange, "participant.enrolled." + e.getParticipantId(), e);
 	}
 

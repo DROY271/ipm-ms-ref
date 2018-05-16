@@ -1,6 +1,5 @@
 package com.cognizant.ri.spm.participant;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,10 +11,12 @@ import com.cognizant.ri.spm.participant.add.AddParticipantCommand;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @Document(collection="spm_participants")
+@ToString
 public class Participant {
 	@Id
 	private String id;

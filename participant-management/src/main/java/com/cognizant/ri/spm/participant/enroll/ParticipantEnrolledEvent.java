@@ -4,8 +4,10 @@ import com.cognizant.ri.spm.participant.Enrollment;
 import com.cognizant.ri.spm.participant.Participant;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class ParticipantEnrolledEvent {
 	private String participantId;
 	private String planId;

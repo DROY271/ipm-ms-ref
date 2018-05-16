@@ -15,6 +15,7 @@ import com.cognizant.ri.pam.accounts.Contribution.Allocation;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @FeignClient("${app.name.fund}")
 public interface Funds {
@@ -29,6 +30,7 @@ public interface Funds {
 	
 	@Data
 	@NoArgsConstructor
+	@ToString
 	public static class AllocateMessage {
 		String transactionId;
 		LocalDateTime allocatedDate;
@@ -37,6 +39,7 @@ public interface Funds {
 	
 	@Data
 	@NoArgsConstructor
+	@ToString
 	public static class FundAllocation {
 		
 		private String fundId;

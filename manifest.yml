@@ -2,6 +2,8 @@
 defaults: &defaults
   env:
     EUREKA_URI: http://eureka-ipm-cts.cfapps.io/eureka
+  services:
+    - logs
   
 applications:
 - name: eureka-v1a

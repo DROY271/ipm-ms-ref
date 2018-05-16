@@ -18,9 +18,11 @@ import com.cognizant.ri.pam.funds.Funds.AllocateMessage;
 import com.cognizant.ri.pam.funds.Funds.FundAllocation;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class MakeContributionHandler extends CommandHandler<MakeContributionCommand, Contribution> {
 
 	// Get the contribution instructions for the account.
@@ -57,8 +59,8 @@ public class MakeContributionHandler extends CommandHandler<MakeContributionComm
 
 	private void update(Contribution c, AllocateMessage m) {
 		Map<String, Allocation> allocations = c.getAllocations().stream()
-				.collect(Collectors.toMap(a -> a.getFundId() + "|" + a.getPlanId(),a -> a));
-		m.getAllocations().forEach( x -> {
+				.collect(Collectors.toMap(a -> a.getFundId() + "|" + a.getPlanId(), a -> a));
+		m.getAllocations().forEach(x -> {
 			Allocation a = allocations.get(x.getFundId() + "|" + x.getRowId());
 			a.setPrice(x.getUnitPrice());
 			a.setQuanity(x.getQuantity());
@@ -70,6 +72,7 @@ public class MakeContributionHandler extends CommandHandler<MakeContributionComm
 		List<FundAllocation> allocations = c.getAllocations().stream().map(a -> new FundAllocation(a))
 				.collect(Collectors.toList());
 		m.setAllocations(allocations);
+		log.debug("Message for fund service is {}", m);
 		return m;
 	}
 

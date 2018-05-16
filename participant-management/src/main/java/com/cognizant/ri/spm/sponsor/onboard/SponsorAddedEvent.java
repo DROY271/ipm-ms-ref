@@ -3,8 +3,10 @@ package com.cognizant.ri.spm.sponsor.onboard;
 import com.cognizant.ri.spm.sponsor.Sponsor;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class SponsorAddedEvent {
 
 	private String id;

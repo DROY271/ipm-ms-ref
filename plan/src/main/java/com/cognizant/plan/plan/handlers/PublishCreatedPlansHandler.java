@@ -27,7 +27,6 @@ public class PublishCreatedPlansHandler extends CommandHandler<PublishCreatedPla
 
 	@Override
 	public Void handle(PublishCreatedPlansCommand command) {
-		log.info("Starting publish run...");
 		List<Plan> unpub = repo.findUnpublished();
 		for (Plan p : unpub) {
 			template.convertAndSend(planExchange.getName(), ROUTING_PREFIX_PLAN_ANNOUNCED + p.getId(), p);

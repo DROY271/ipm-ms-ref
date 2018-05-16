@@ -6,11 +6,14 @@ import com.cognizant.kernel.CommandHandler;
 import com.cognizant.ri.pam.accounts.Account;
 import com.cognizant.ri.pam.accounts.CreateNewAccountCommand;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class CreateNewAccountHandler extends CommandHandler<CreateNewAccountCommand, Account> {
 
 	private AccountRepository repo;
-	
+
 	protected CreateNewAccountHandler(AccountRepository repo) {
 		this.repo = repo;
 	}
@@ -22,6 +25,7 @@ public class CreateNewAccountHandler extends CommandHandler<CreateNewAccountComm
 			Account acct = new Account(command);
 			dbVal = repo.save(acct);
 		} else if (dbVal.getParticipantName() == null) {
+			log.debug("Found a placeholder account: {} Replacing with actual.", dbVal);
 			dbVal.setParticipantName(command.getParticipantName());
 			dbVal = repo.save(dbVal);
 		}

@@ -8,7 +8,10 @@ import org.springframework.stereotype.Component;
 import com.cognizant.ri.spm.sponsor.Notifier;
 import com.cognizant.ri.spm.sponsor.onboard.SponsorAddedEvent;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class RabbitSponsorNotifier implements Notifier {
 
 	private String exchange;
@@ -21,6 +24,7 @@ public class RabbitSponsorNotifier implements Notifier {
 
 	@Override
 	public void sponsorAdded(SponsorAddedEvent e) {
+		log.debug("Publishing SponsorAdded event {}", e);
 		template.convertAndSend(exchange, "sponsor.added." + e.getId(), e);
 	}
 
