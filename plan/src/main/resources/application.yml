@@ -1,3 +1,6 @@
+spring:
+  application:
+    name: plan
 server:
   port: 8999
 
@@ -30,8 +33,15 @@ management:
     enabled: false
       
 ---
+spring.profiles: cloud
+eureka:
+  instance:
+    nonSecurePort: 80
+    hostname: ${vcap.application.uris[0]}
+
+
+---
 spring.profiles: default
-debug: true
-spring:
-  jpa:
-    database: H2
+eureka:
+  client:
+    enabled: false

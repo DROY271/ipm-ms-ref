@@ -26,7 +26,9 @@ zuul:
     acm:
       path: /acm/**
       serviceId: account-contrib
-
+    plan:
+      path: /plan/**
+      serviceId: plan
 ---
 spring.profiles: cloud
 eureka:
@@ -45,14 +47,23 @@ ribbon:
   eureka:
     enabled: false
 
+plan:
+  ribbon:
+    #listOfServers: localhost:8999
+    listOfServers: plan-ipm-cts.cfapps.io
+
 participant-management:
   ribbon:
-    listOfServers: localhost:9000
-
+    #listOfServers: localhost:9000
+    listOfServers: spm-ipm-cts.cfapps.io
+    
 accounts:
   ribbon:
-    listOfServers: localhost:9001
-
+    #listOfServers: localhost:9001
+    listOfServers: pam-ipm-cts.cfapps.io
+    
+    
 account-contrib:
   ribbon:
-    listOfServers: localhost:9002
+    #listOfServers: localhost:9002
+    listOfServers: acm-ipm-cts.cfapps.io

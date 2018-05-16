@@ -5,7 +5,7 @@ module.factory('ParticipantService', [ '$resource', function($resource) {
 	});
 } ]);
 module.factory('PlanService', [ '$resource', function($resource) {
-	return $resource('/spm/plans', {}, {
+	return $resource('/plan/plans', {}, {
 		query : {
 			method : 'GET',
 			isArray : true
