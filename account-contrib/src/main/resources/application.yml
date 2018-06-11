@@ -31,6 +31,8 @@ participant:
 
 logging:
   level:
+    org: WARN 
+    com.netflix: WARN 
     com.cognizant : DEBUG
 
 ---

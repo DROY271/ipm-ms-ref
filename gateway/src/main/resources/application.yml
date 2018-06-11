@@ -12,7 +12,13 @@ eureka:
   client:
     service-url:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-          
+
+logging:
+  level:
+    org: WARN 
+    com.netflix: WARN 
+    com.cognizant : DEBUG
+      
 zuul:
   ignored-headers: X-none
   ignore-security-headers: false

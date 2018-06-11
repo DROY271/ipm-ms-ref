@@ -37,6 +37,8 @@ security:
     enabled: false
 logging:
   level:
+    org: WARN 
+    com.netflix: WARN 
     com.cognizant : DEBUG
 ---
 spring.profiles: cloud

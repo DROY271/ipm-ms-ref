@@ -2,8 +2,6 @@
 defaults: &defaults
   env:
     EUREKA_URI: http://eureka-ipm-cts.cfapps.io/eureka
-  services:
-    - logs
   
 applications:
 - name: eureka-v1a
@@ -23,6 +21,8 @@ applications:
   path: fund/target/fund-0.0.1-SNAPSHOT.jar
   routes:
   - route: fund-ipm-cts.cfapps.io
+  services:
+   - logs
 - name: participant-management-v1a
   <<: *defaults
   path: participant-management/target/participant-management-0.0.1-SNAPSHOT.jar
@@ -31,6 +31,7 @@ applications:
   services:
    - event-bus
    - mongo
+   - logs
 - name: accounts-v1a
   <<: *defaults
   path: accounts/target/accounts-0.0.1-SNAPSHOT.jar
@@ -39,6 +40,7 @@ applications:
   services:
    - event-bus
    - mongo
+   - logs
 - name: account-contrib-v1a
   <<: *defaults
   path: account-contrib/target/account-contrib-0.0.1-SNAPSHOT.jar
@@ -47,8 +49,11 @@ applications:
   services:
    - event-bus
    - mongo
+   - logs
 - name: gateway-v1a
   <<: *defaults
   path: gateway/target/gateway-0.0.1-SNAPSHOT.jar
   routes:
   - route: gateway-ipm-cts.cfapps.io
+  services:
+   - logs
