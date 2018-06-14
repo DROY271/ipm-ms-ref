@@ -22,7 +22,7 @@ public class OnboardSponsorHandler extends AbstractSponsorHandler<OnboardSponsor
 		Sponsor sponsor = new Sponsor(cmd);
 		sponsor = repo.save(sponsor);
 		if (notifier != null) {
-			notifier.sponsorAdded(new SponsorAddedEvent(sponsor));
+			notifier.sponsorAdded(new SponsorOnboardedEvent(sponsor));
 		}
 		return sponsor;
 		// }

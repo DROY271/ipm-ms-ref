@@ -7,14 +7,14 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class SponsorAddedEvent {
+public class SponsorOnboardedEvent {
 
 	private String id;
 	private String name;
 	private String planId;
 
 	
-	SponsorAddedEvent(Sponsor sponsor) {
+	SponsorOnboardedEvent(Sponsor sponsor) {
 		id = sponsor.getId();
 		name = sponsor.getName();
 		planId = sponsor.getPlan().getId();

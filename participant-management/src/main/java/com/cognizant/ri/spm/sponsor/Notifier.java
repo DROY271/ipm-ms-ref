@@ -1,9 +1,9 @@
 package com.cognizant.ri.spm.sponsor;
 
-import com.cognizant.ri.spm.sponsor.onboard.SponsorAddedEvent;
+import com.cognizant.ri.spm.sponsor.onboard.SponsorOnboardedEvent;
 
 public interface Notifier {
 
-	void sponsorAdded(SponsorAddedEvent e);
+	void sponsorAdded(SponsorOnboardedEvent e);
 	
 }
